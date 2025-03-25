@@ -11,5 +11,4 @@ export interface TimeEntry {
 export interface TimeTrackingState {
   timeEntries: TimeEntry[];
   isLoading: boolean;
-  error: string | null;
 }

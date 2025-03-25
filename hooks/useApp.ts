@@ -5,6 +5,7 @@ import { RootState } from "@/redux/store";
 import {
   clearAppState,
   setDropDown,
+  setOpenModal,
   setSideBarOpen,
 } from "@/redux/features/appSlice";
 import { usePathname } from "next/navigation";
@@ -21,7 +22,12 @@ export default function useApp() {
     },
     [dispatch]
   );
-
+  const toggleOpenModal = useCallback(
+    (toggle: boolean) => {
+      dispatch(setOpenModal(toggle));
+    },
+    [dispatch]
+  );
   const toggleDropDown = useCallback(
     (toggle: boolean) => {
       dispatch(setDropDown(toggle));
@@ -40,5 +46,6 @@ export default function useApp() {
     navigate: { pathname },
     toggleSideBar,
     toggleDropDown,
+    toggleOpenModal,
   };
 }

@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  checkAuth,
-  login,
-  logout,
-  setUserData,
-} from "@/redux/features/authSlice";
+import { checkAuth, login, logout } from "@/redux/features/authSlice";
 import { AppDispatch, RootState } from "@/redux/store";
-import { LoginModel, UserModel } from "@/types";
+import { LoginModel } from "@/types";
 import { useRouter } from "next/navigation";
 
 import { useCallback } from "react";
@@ -24,12 +19,6 @@ export default function useAuth() {
     },
     [dispatch]
   );
-  const getUserData = useCallback(
-    (userData: UserModel) => {
-      dispatch(setUserData(userData));
-    },
-    [dispatch]
-  );
 
   const signOut = useCallback(() => {
     dispatch(logout());
@@ -43,7 +32,6 @@ export default function useAuth() {
     ...state,
     navigation,
     signOut,
-    getUserData,
     authenticate,
     checkIsAuthenticated,
   };

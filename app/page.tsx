@@ -1,3 +1,4 @@
+"use client";
 import useAuth from "@/hooks/useAuth";
 import Dashboard from "./dashboard/page";
 import Login from "./login/page";

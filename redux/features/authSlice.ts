@@ -1,12 +1,13 @@
 import { AuthState, LoginModel, UserModel, UserRoleModel } from "@/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { showAlert } from "./notificationSlice";
+import { ResponseStatus, Screens } from "@/enums";
 
 const initialState: AuthState = {
   role: null,
   userInfo: null,
   isAuthenticated: false,
   isLoading: false,
-  error: null,
 };
 
 const USERS = {
@@ -24,13 +25,19 @@ const USERS = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (credentials: LoginModel, { rejectWithValue }) => {
-    console.log(credentials);
+  async (credentials: LoginModel, { rejectWithValue, dispatch }) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 800));
       const userInfo = USERS[credentials.email as keyof typeof USERS];
 
       if (!userInfo || userInfo.password !== credentials.password) {
+        dispatch(
+          showAlert({
+            message: "Invalid email or password",
+            type: ResponseStatus.error,
+            component: Screens.login,
+          })
+        );
         return rejectWithValue("Invalid email or password");
       }
       const user: UserModel = {
@@ -41,16 +48,32 @@ export const login = createAsyncThunk(
       localStorage.setItem("user", JSON.stringify(user));
       return user;
     } catch (error) {
-      console.log(error);
+      dispatch(
+        showAlert({
+          message: error,
+          type: ResponseStatus.error,
+          component: Screens.login,
+        })
+      );
       return rejectWithValue("Login failed. Please try again.");
     }
   }
 );
 
-export const logout = createAsyncThunk("auth/logout", async () => {
-  localStorage.removeItem("user");
-  return true;
-});
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (_, { dispatch }) => {
+    localStorage.removeItem("user");
+    dispatch(
+      showAlert({
+        message: "You have been logged out successfully",
+        type: ResponseStatus.info,
+        component: Screens.login,
+      })
+    );
+    return true;
+  }
+);
 
 export const checkAuth = createAsyncThunk("auth/check", async () => {
   const storedUser = localStorage.getItem("user");
@@ -63,33 +86,19 @@ export const checkAuth = createAsyncThunk("auth/check", async () => {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    clearError: (state) => {
-      state.error = null;
-    },
-    setUserData: (state, { payload }) => {
-      if (payload !== null) {
-        state.userInfo = payload;
-      }
-    },
-    setRole: (state, { payload }) => {
-      state.role = payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
       .addCase(login.fulfilled, (state, action: PayloadAction<UserModel>) => {
         state.isLoading = false;
         state.isAuthenticated = true;
         state.userInfo = action.payload;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(login.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload as string;
       })
       .addCase(logout.fulfilled, (state) => {
         state.userInfo = null;
@@ -104,5 +113,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearError, setRole, setUserData } = authSlice.actions;
+export const {} = authSlice.actions;
 export default authSlice.reducer;

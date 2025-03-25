@@ -11,7 +11,6 @@ export interface AuthState {
   userInfo: UserModel | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  error: string | null;
 }
 export interface LoginModel {
   email: string;

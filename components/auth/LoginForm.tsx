@@ -5,19 +5,16 @@ import { ButtonType, InputType, Screens } from "@/enums";
 import useForm from "@/hooks/useForm";
 import {
   EnvelopeIcon,
-  ExclamationCircleIcon,
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/outline";
 import { useNotification } from "@/hooks/useNotification";
 import useAuth from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
-import { Form, TextInput, Button, Spinner } from "@/components";
+import { Form, TextInput, Button, Spinner, Notification } from "@/components";
 
 export default function LoginForm() {
-  const router = useRouter();
-  const { error, component } = useNotification();
-  const { isLoading, isAuthenticated, authenticate } = useAuth();
+  const { message, hideAlert, component } = useNotification();
+  const { isLoading, isAuthenticated, authenticate, navigation } = useAuth();
 
   const {
     handleInputChange,
@@ -30,9 +27,9 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      navigation.push("/dashboard");
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, navigation]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,14 +38,18 @@ export default function LoginForm() {
     }
   };
 
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        hideAlert();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [hideAlert, message]);
+
   return (
     <div className="flex flex-col space-y-6">
-      {component === Screens.login && error && (
-        <div className="p-3 ring-2 ring-red-200 bg-red-50 flex items-center space-x-3 rounded-md">
-          <ExclamationCircleIcon className="w-6 h-6  text-red-300" />
-          <p className="text-[13px] sm:text-[13.5px]">{error}</p>
-        </div>
-      )}
+      <div>{component === Screens.login && message && <Notification />}</div>
       <Form
         onSubmit={handleSubmit}
         className="flex flex-col justify-center space-y-6 2xl:space-y-8 sm:space-y-8 sm:flex-1"
@@ -61,12 +62,7 @@ export default function LoginForm() {
           onChange={handleInputChange}
           iconLeft={<EnvelopeIcon className="w-5 h-5 ml-4" />}
           styles="ring rounded-md h-14"
-          error={
-            errors?.email ||
-            (component === Screens.login &&
-              error === "User is not registered." &&
-              error)
-          }
+          error={errors?.email}
         />
         <TextInput
           label="Password"
@@ -83,12 +79,7 @@ export default function LoginForm() {
               )}
             </div>
           }
-          error={
-            errors?.password ||
-            (component === Screens.login &&
-              error === "Incorrect credentials." &&
-              error)
-          }
+          error={errors?.password}
           styles="ring rounded-md h-14"
         />
 

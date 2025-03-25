@@ -4,126 +4,136 @@ A responsive dashboard for a legal practice management system built with Next.js
 
 ## Project Overview
 
-This application provides a comprehensive dashboard for legal professionals to manage cases, documents, and time tracking. The dashboard includes:
+This application provides a comprehensive dashboard for legal professionals to manage their cases, track time, and access documents. The dashboard includes role-based access control, with different features available to admin and standard users.
+
+### Key Features
 
 - **Case Summary Widget**: Displays counts of active, pending, and closed cases with trend indicators
-- **Recent Documents Widget**: Shows the latest documents with version information
-- **Time Tracking Widget**: Visualizes billable hours by attorney
-- **Role-based Navigation**: Different menu items and access levels based on user role
-- **Authentication**: Secure login with role-based permissions
+- **Recent Documents Widget**: Shows latest documents with version tracking
+- **Time Tracking Widget**: Displays billable hours by attorney with filtering capabilities
+- **Role-based Navigation**: Different menu items based on user role
+- **Authentication System**: Login with role-based access control
 
 ## Technology Stack
 
-- **Frontend Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
+- **Frontend**: Next.js 14 (App Router), TypeScript, React
 - **State Management**: Redux Toolkit
 - **Styling**: Tailwind CSS
-- **Testing**: Jest and React Testing Library
+- **Authentication**: Custom auth with Redux (simulated)
+- **Testing**: Jest, React Testing Library
 
-## Setup Instructions
+## Getting Started
 
-1. Clone the repository:
+### Prerequisites
 
-   ```
-   git clone https://github.com/yourusername/legal-dashboard.git
-   cd legal-dashboard
-   ```
+- Node.js (v18 or later)
+- npm or yarn
 
-2. Install dependencies:
+### Installation
 
-   ```
-   npm install
-   ```
+```bash
+# Clone the repository
+git clone <repository-url>
 
-3. Run the development server:
+# Navigate to project directory
+cd legal-dashboard
 
-   ```
-   npm run dev
-   ```
+# Install dependencies
+npm install
+# or
+yarn install
+```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Running the Application
+
+```bash
+# Start the development server
+npm run dev
+# or
+yarn dev
+```
+
+The application will be available at [http://localhost:3000](http://localhost:3000)
 
 ## Login Credentials
 
-The application includes two user types with different access levels:
+The application comes with two predefined user accounts:
 
-- **Admin User**:
+### Admin User
 
-  - Email: admin@legaltech.com
-  - Password: admin123
-  - Full access to all features, including settings and reports
+- **Email**: admin@legaltech.com
+- **Password**: admin123
+- **Access**: All features including settings and reports
 
-- **Standard User**:
-  - Email: user@legaltech.com
-  - Password: user123
-  - Limited access (cannot view settings or reports)
+### Standard User
 
-## Technical Architecture
+- **Email**: user@legaltech.com
+- **Password**: user123
+- **Access**: Limited to basic dashboard features
 
-### Directory Structure
-
-```
-legal-dashboard/
-├── app/                  # Next.js App Router pages and layouts
-├── components/           # React components
-│   ├── auth/             # Authentication components
-│   ├── dashboard/        # Dashboard widgets
-│   ├── layout/           # Layout components
-│   └── ui/               # Reusable UI components
-├── redux/                # Redux state management
-│   ├── slices/           # Redux Toolkit slices
-│   ├── hooks.ts          # Custom Redux hooks
-│   └── store.ts          # Redux store configuration
-├── services/             # API service modules
-├── utils/                # Utility functions and mock data
-└── ...                   # Configuration files
-```
-
-### Key Design Decisions
-
-1. **App Router Implementation**: Used Next.js 14 App Router for better SEO, improved routing, and server components for better performance.
-
-2. **Role-based Authorization**: Implemented role-based UI elements and protected routes based on user roles.
-
-3. **Mock API Services**: Created simulated API services with random delays and error states to mimic real-world conditions.
-
-4. **UI/UX Approach**: Focused on a clean, responsive design that works well on desktop devices with intuitive data visualization.
-
-5. **Testing Strategy**: Key components tested with Jest and React Testing Library for reliability.
+## Architecture and Technical Decisions
 
 ### State Management
 
-The application uses Redux Toolkit for state management with slice-based architecture:
+The application uses Redux Toolkit for state management, with separate slices for:
 
-- **authSlice**: Handles authentication state, user data, and login/logout functionality
-- **casesSlice**: Manages case summary data
-- **documentsSlice**: Handles document listing and operations
-- **timeTrackingSlice**: Manages time entry data and calculations
+- Authentication
+- Cases
+- Documents
+- Time Tracking
+- Notifications
 
-## Assumptions
+### API Simulation
 
-1. **Authentication**: In a production environment, this would use a secure authentication system with JWT or OAuth. For this demo, we use localStorage for simplicity.
+The application simulates API interactions with mock data services, demonstrating:
 
-2. **API Integration**: The application uses mock data, but is designed to easily connect to real APIs by updating the service modules.
+- Loading states
+- Error handling
+- CRUD operations
 
-3. **Error Handling**: Implemented basic error handling for API requests with retry capability.
+### Component Structure
 
-4. **Responsiveness**: Focused on desktop-only responsive design as specified, but the layout adapts to different desktop screen sizes.
+- **Layout Components**: Sidebar, Header, Dashboard Layout
+- **Widget Components**: Case Summary, Time Tracking, Recent Documents
+- **UI Components**: Cards, Buttons, Inputs, Loading States
+- **Page Components**: Dashboard, Login, Settings
 
-5. **Browser Support**: Optimized for modern browsers (Chrome, Firefox, Safari, Edge).
+### Authentication Flow
 
-## Running Tests
+1. User enters credentials on login page
+2. Credentials are validated against mock user database
+3. On successful authentication, user info is stored in Redux and localStorage
+4. Protected routes check authentication state before rendering
+5. Role-based UI elements are conditionally rendered based on user role
 
-```
+## Testing
+
+To run the test suite:
+
+```bash
 npm test
+# or
+yarn test
 ```
 
-## Building for Production
+The test suite includes:
 
-```
-npm run build
-```
+- Component tests for UI elements
+- Integration tests for authentication flow
+- Unit tests for Redux actions and reducers
 
-## License
+## Assumptions Made
 
-[MIT](LICENSE)
+- The application assumes a single-tenant environment (no multi-company support)
+- Data persistence is simulated and will reset on page refresh (except for auth state)
+- Error scenarios are simulated for demonstration purposes
+- The application is optimized for desktop viewing but is responsive
+
+## Future Enhancements
+
+- Real API integration
+- Persistent data storage
+- Advanced filtering and reporting
+- Calendar integration
+- Document editing capabilities
+- Multi-language support

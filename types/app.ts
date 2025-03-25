@@ -29,7 +29,7 @@ export interface SidebarProps {
 export interface DashBoardType {
   icon: React.ReactNode;
   label: string;
-  value: string;
+  value: number;
   change: number;
   changeType: string;
 }

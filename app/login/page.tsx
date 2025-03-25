@@ -9,14 +9,19 @@ export default function Login() {
           <div className="flex flex-col space-y-5 sm:space-y-8 sm:px-0 w-full sm:w-[60%] md:w-[50%] lg:[w-40%] xl:w-[40%] 2xl:w-[25%]">
             <div className="flex flex-col space-y-5">
               <div className="flex w-max gap-3 items-center">
-                <h2 className={`text-title-md2 font-semibold text-grey_black`}>
+                <h2
+                  className={`text-title-md2 font-semibold text-accent_coral`}
+                >
                   Legal Practice
                 </h2>
               </div>
               <div>
                 <div>
                   <p className="text-title-xsm font-medium text-grey_black">
-                    Welcome to your Dashboard
+                    Welcome, it has been a minute.
+                  </p>
+                  <p className="text-[13px] text-grey_black">
+                    Sign in to your account
                   </p>
                 </div>
               </div>

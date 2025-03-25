@@ -13,7 +13,9 @@ export default function RecentDocumentsWidget() {
   if (isLoading)
     return (
       <Card title="Recent Documents">
-        <Spinner styles="h-4 w-4 border-2" />
+        <div className="flex justify-center items-center h-full">
+          <Spinner styles="h-4 w-4 border-2 border-primary_color" />
+        </div>
       </Card>
     );
 

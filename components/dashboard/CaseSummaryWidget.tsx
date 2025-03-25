@@ -12,8 +12,10 @@ export default function CaseSummaryWidget() {
 
   if (isLoading)
     return (
-      <Card title="Recent Documents">
-        <Spinner styles="h-4 w-4 border-2" />
+      <Card title="Case Summary">
+        <div className="flex justify-center items-center h-full">
+          <Spinner styles="h-4 w-4 border-2 border-primary_color" />
+        </div>
       </Card>
     );
   return (
@@ -45,7 +47,7 @@ export default function CaseSummaryWidget() {
         </div>
       </div>
 
-      <div className="mt-4 pt-4 border-t border-gray-200">
+      <div className="mt-4 pt-4">
         <div className="flex justify-between items-center">
           <span className="text-sm font-medium text-gray-600">
             30-day comparison

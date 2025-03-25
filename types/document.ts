@@ -10,5 +10,4 @@ export interface Document {
 export interface DocumentState {
   documents: Document[];
   isLoading: boolean;
-  error: string | null;
 }

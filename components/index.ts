@@ -11,6 +11,8 @@ import DropdownMenu from "./ui/DropDownMenu";
 import TimeTrackingWidget from "./dashboard/TimeTrackingWidget";
 import CaseSummaryWidget from "./dashboard/CaseSummaryWidget";
 import RecentDocumentsWidget from "./dashboard/RecentDocumentsWidget";
+import Modal from "./ui/Modal";
+import MenuDropDown from "./ui/MenuDropDown";
 export {
   LoginForm,
   Notification,
@@ -25,4 +27,6 @@ export {
   TimeTrackingWidget,
   CaseSummaryWidget,
   RecentDocumentsWidget,
+  Modal,
+  MenuDropDown,
 };
