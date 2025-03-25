@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      run: yarn fix
+    build:
+      run: yarn build

@@ -1,0 +1,58 @@
+import { TimeEntry } from "@/types/timeTracking";
+
+export const mockTimeEntries: TimeEntry[] = [
+  {
+    id: "1",
+    attorney: "Jane Doe",
+    case: "Smith v. Johnson",
+    description: "Contract review",
+    date: "2025-03-22",
+    hours: 2.5,
+    billable: true,
+  },
+  {
+    id: "2",
+    attorney: "John Smith",
+    case: "ABC Corp Merger",
+    description: "Due diligence",
+    date: "2025-03-22",
+    hours: 4.0,
+    billable: true,
+  },
+  {
+    id: "3",
+    attorney: "Jane Doe",
+    case: "Doe Estate Planning",
+    description: "Client meeting",
+    date: "2025-03-21",
+    hours: 1.5,
+    billable: true,
+  },
+  {
+    id: "4",
+    attorney: "Alex Johnson",
+    case: "Smith v. Johnson",
+    description: "Deposition preparation",
+    date: "2025-03-21",
+    hours: 3.0,
+    billable: true,
+  },
+  {
+    id: "5",
+    attorney: "John Smith",
+    case: "XYZ Corp v. ABC Inc",
+    description: "Research",
+    date: "2025-03-20",
+    hours: 2.0,
+    billable: true,
+  },
+  {
+    id: "6",
+    attorney: "Alex Johnson",
+    case: "Smith v. Johnson",
+    description: "Court appearance",
+    date: "2025-03-19",
+    hours: 5.0,
+    billable: true,
+  },
+];

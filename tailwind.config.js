@@ -1,0 +1,111 @@
+/** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    fontFamily: {
+      sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+    },
+
+    extend: {
+      screens: {
+        xs: "550px",
+        md: "850px",
+        xl: "1180px",
+        "2xl": "1280px",
+      },
+      colors: {
+        stroke: "#E2E8F0",
+        stroke1: "#c9cacd",
+        primary_color: "#2A2A4E",
+        accent_coral: "#FF9999",
+        background_color: "#fafafa",
+        neutral_light: "#F5F5F7",
+        background_color_second: "#f6f6f6",
+        danger: "#E11900",
+        danger_border: "#F1998E",
+        danger_background: "#FFEFED",
+        grey: "#C2C2CB",
+        grey_black_4: "#212121",
+        grey_black_3: "#757679",
+        grey_black_2: "#6e6e6e",
+        grey_black: "#515252",
+        grey_skip: "#6c7898",
+        DEFAULT_GREY: "#C2C2CB",
+        gray_color: "#656565",
+        itemactive: "#e6e8eb",
+        itemhover: "#f1f3f5",
+        active: "#f3f3f4",
+      },
+      fontSize: {
+        "title-xxl": ["44px", "55px"],
+        "title-xl": ["36px", "45px"],
+        "title-xl2": ["33px", "45px"],
+        "title-lg": ["28px", "35px"],
+        "title-md": ["24px", "30px"],
+        "title-md2": ["26px", "30px"],
+        "title-sm": ["20px", "26px"],
+        "title-xsm": ["18px", "24px"],
+        "title-xxsm": ["10px", "10px"],
+      },
+      boxShadow: {
+        default: "0px 8px 13px -3px rgba(0, 0, 0, 0.07)",
+        card: "0px 1px 3px rgba(0, 0, 0, 0.12)",
+        "card-2": "0px 1px 2px rgba(0, 0, 0, 0.05)",
+        switcher:
+          "0px 2px 4px rgba(0, 0, 0, 0.2), inset 0px 2px 2px #FFFFFF, inset 0px -1px 1px rgba(0, 0, 0, 0.1)",
+        "switch-1": "0px 0px 5px rgba(0, 0, 0, 0.15)",
+        1: "0px 1px 3px rgba(0, 0, 0, 0.08)",
+        2: "0px 1px 4px rgba(0, 0, 0, 0.12)",
+        3: "0px 1px 5px rgba(0, 0, 0, 0.14)",
+        4: "0px 4px 10px rgba(0, 0, 0, 0.12)",
+        5: "0px 1px 1px rgba(0, 0, 0, 0.15)",
+        6: "0px 3px 15px rgba(0, 0, 0, 0.1)",
+        7: "-5px 0 0 #313D4A, 5px 0 0 #313D4A",
+        8: "1px 0 0 #313D4A, -1px 0 0 #313D4A, 0 1px 0 #313D4A, 0 -1px 0 #313D4A, 0 3px 13px rgb(0 0 0 / 8%)",
+      },
+      dropShadow: {
+        1: "0px 1px 0px #E2E8F0",
+        2: "0px 1px 4px rgba(0, 0, 0, 0.12)",
+      },
+      keyframes: {
+        rotating: {
+          "0%, 100%": { transform: "rotate(360deg)" },
+          "50%": { transform: "rotate(0deg)" },
+        },
+        ripple: {
+          "0%": { width: "0px", height: "0px", opacity: 0.5 },
+          "100%": { width: "500px", height: "500px", opacity: 0 },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        "ping-once": "ping 5s cubic-bezier(0, 0, 0.2, 1)",
+        rotating: "rotating 30s linear infinite",
+        "spin-1.5": "spin 1.5s linear infinite",
+        "spin-2": "spin 2s linear infinite",
+        "spin-3": "spin 3s linear infinite",
+        ripple: "ripple 1s linear infinite",
+        "slow-spin": "spin 20s linear infinite",
+        float: "float 3s ease-in-out infinite",
+      },
+      zIndex: {
+        999999: "999999",
+        99999: "99999",
+        9999: "9999",
+        999: "999",
+        99: "99",
+        9: "9",
+        1: "1",
+      },
+    },
+  },
+  plugins: [],
+};
