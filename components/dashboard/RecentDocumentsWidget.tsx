@@ -1,14 +1,31 @@
 "use client";
-import React, { useEffect } from "react";
-import { Card, Spinner } from "@/components";
+import React, { useCallback, useState } from "react";
+import { Card, MenuDropDown, Spinner } from "@/components";
 import useDocument from "@/hooks/useDocument";
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import { DocumentModel } from "@/types";
+
+const documentColumns: string[] = [
+  "Name",
+  "Case",
+  "Version",
+  "Updated",
+  "Actions",
+];
 
 export default function RecentDocumentsWidget() {
-  const { documents, getDocuments, isLoading } = useDocument();
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const [currentDocument, setCurrentDocument] = useState<string>("");
+  const { documents, isLoading, removeDocument } = useDocument();
 
-  useEffect(() => {
-    getDocuments();
-  }, [getDocuments]);
+  const handleOpenPopup = useCallback(
+    (e: React.MouseEvent, document: DocumentModel) => {
+      e.stopPropagation();
+      setCurrentDocument(document?.id ?? "");
+      setOpenPopup(true);
+    },
+    []
+  );
 
   if (isLoading)
     return (
@@ -25,30 +42,15 @@ export default function RecentDocumentsWidget() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Name
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Case
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Version
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Updated
-              </th>
+              {documentColumns.map((header) => (
+                <th
+                  key={header}
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -90,6 +92,29 @@ export default function RecentDocumentsWidget() {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {doc.updatedAt}
+                </td>
+                <td>
+                  <div
+                    onClick={(e) => handleOpenPopup(e, doc)}
+                    className="p-1.5 rounded-md hover:bg-gray cursor-pointer"
+                  >
+                    <EllipsisHorizontalIcon className="h-4 w-4" />
+                  </div>
+                  <MenuDropDown
+                    open={currentDocument === doc?.id ? openPopup : false}
+                    close={() => setOpenPopup(false)}
+                  >
+                    <div
+                      data-te-ripple-init
+                      data-te-ripple-color="light"
+                      className="flex flex-col cursor-pointer duration-300 ease-in-out hover:bg-neutral_light"
+                      onClick={() => removeDocument(doc.id ?? "")}
+                    >
+                      <div className="flex items-center space-x-2 py-2 px-4">
+                        <p className="text-[13px] text-gray_color">Delete</p>
+                      </div>
+                    </div>
+                  </MenuDropDown>
                 </td>
               </tr>
             ))}

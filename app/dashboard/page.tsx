@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import { RecentDocumentsWidget, TimeTrackingWidget } from "@/components";
-
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import useAuth from "@/hooks/useAuth";
 import { capitalize } from "lodash";
@@ -17,8 +16,10 @@ import { DashBoardType } from "@/types";
 import useCase from "@/hooks/useCase";
 import useDocument from "@/hooks/useDocument";
 import useTime from "@/hooks/useTime";
+import { useClientSideOnly } from "@/hooks/useClientSideOnly";
 
 export default function Dashboard() {
+  const isClient = useClientSideOnly();
   const { userInfo } = useAuth();
   const { getDocuments } = useDocument();
   const { getTimeTracking, timeEntries, isLoading: timeLoading } = useTime();
@@ -143,6 +144,14 @@ export default function Dashboard() {
       )}
     </div>
   );
+
+  if (!isClient) {
+    return (
+      <DashboardLayout>
+        <div className="h-full w-full flex flex-col space-y-10">Loading...</div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>

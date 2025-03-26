@@ -27,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <ReduxProvider>
           <main className="h-full w-full overflow-x-hidden flex flex-col">

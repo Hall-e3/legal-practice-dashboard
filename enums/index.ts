@@ -27,6 +27,7 @@ export enum Screens {
   dashboard = "dashboard",
   home = "home",
   case = "case",
+  document = "document",
 }
 
 export enum ResponseStatus {

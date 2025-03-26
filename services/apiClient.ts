@@ -50,7 +50,10 @@ export const apiClient = {
     }
   },
 
-  update: async <T>(endpoint: string, data: T): Promise<T> => {
+  update: async <T extends { id: string | number }>(
+    endpoint: string,
+    data: T
+  ): Promise<T> => {
     await new Promise((resolve) =>
       setTimeout(resolve, 800 + Math.random() * 800)
     );

@@ -1,4 +1,4 @@
-export interface Document {
+export interface DocumentModel {
   id: string;
   name: string;
   type: string;
@@ -8,6 +8,7 @@ export interface Document {
 }
 
 export interface DocumentState {
-  documents: Document[];
+  documents: DocumentModel[];
   isLoading: boolean;
+  error: string | null;
 }

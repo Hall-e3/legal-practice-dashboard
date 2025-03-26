@@ -1,6 +1,6 @@
-import { Document } from "@/types";
+import { DocumentModel } from "@/types";
 
-export const mockDocuments: Document[] = [
+export const mockDocuments: DocumentModel[] = [
   {
     id: "1",
     name: "Smith Contract",
