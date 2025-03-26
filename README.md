@@ -63,7 +63,7 @@ The application comes with two predefined user accounts:
 
 - **Email**: admin@legaltech.com
 - **Password**: admin123
-- **Access**: All features including settings and reports
+- **Access**: All features, including settings and reports
 
 ### Standard User
 
@@ -89,7 +89,7 @@ The application simulates API interactions with mock data services, demonstratin
 
 - Loading states
 - Error handling
-- CRUD operations especially login and cases only and fetching for others
+- CRUD operations, especially login and cases only, and fetching for others
 
 ### Component Structure
 
@@ -100,8 +100,8 @@ The application simulates API interactions with mock data services, demonstratin
 
 ### Authentication Flow
 
-1. User enters credentials on login page
-2. Credentials are validated against mock user database
+1. User enters credentials on the login page
+2. Credentials are validated against the mock user database
 3. On successful authentication, user info is stored in Redux and localStorage
 4. Protected routes check authentication state before rendering
 5. Role-based UI elements are conditionally rendered based on user role
@@ -124,9 +124,9 @@ The test suite includes:
 
 ## Assumptions Made
 
-- I assumed to use the lefthook dev package to help me with preventing commiting error code
-- I assumed the usage of lodash just to capitialize the first letter of the name of the user displayed.
-- I also assumed to use redux persist to persist the logged in user
+- I assumed to use the lefthook dev package to help me with preventing committing errors in code
+- I assumed the usage of lodash just to capitalize the first letter of the user's name displayed.
+- I also assumed using Redux Persist and local storage to persist the logged-in user 
 
 ## Future Enhancements
 
