@@ -124,10 +124,9 @@ The test suite includes:
 
 ## Assumptions Made
 
-- The application assumes a single-tenant environment (no multi-company support)
-- Data persistence is simulated and will reset on page refresh (except for auth state)
-- Error scenarios are simulated for demonstration purposes
-- The application is optimized for desktop viewing but is responsive
+- I assumed to use the lefthook dev package to help me with preventing commiting error code
+- I assumed the usage of lodash just to capitialize the first letter of the name of the user displayed.
+- I also assumed to use redux persist to persist the logged in user
 
 ## Future Enhancements
 
@@ -136,4 +135,4 @@ The test suite includes:
 - Advanced filtering and reporting
 - Calendar integration
 - Document editing capabilities
-- Multi-language support
+
