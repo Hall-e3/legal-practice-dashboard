@@ -89,7 +89,7 @@ The application simulates API interactions with mock data services, demonstratin
 
 - Loading states
 - Error handling
-- CRUD operations
+- CRUD operations especially login and cases only and fetching for others
 
 ### Component Structure
 
